@@ -46,3 +46,11 @@ nums is sorted in non-decreasing order.
 */
 
 // Solved: https://leetcode.com/problems/remove-duplicates-from-sorted-array/description/?envType=study-plan-v2&envId=top-interview-150
+
+var removeDuplicates = function(nums) {
+  for(let i = 0; i < nums.length; i++) {
+      while (nums[i] === nums[i+1]) {
+          nums.splice(nums.indexOf(nums[i]), 1);
+      }
+  }
+};
