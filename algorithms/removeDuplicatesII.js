@@ -44,3 +44,33 @@ Constraints:
 -104 <= nums[i] <= 104
 nums is sorted in non-decreasing order.
 */
+
+// solved: https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/?envType=study-plan-v2&envId=top-interview-150
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+
+ var removeDuplicates = function(nums, ran) {
+  let obj = {};
+  
+    for(let i = 0; i < nums.length; i++) {
+      obj[nums[i]]
+          ? obj[nums[i]]++
+          : obj[nums[i]] = 1;
+    }
+  
+    for (let j = 0; j < nums.length; j++) {
+          if (obj[nums[j]] >= 3) {
+              nums.splice(nums.indexOf(nums[j]), 1);
+              obj[nums[j]]--
+          } 
+    }
+  
+    if (ran) {
+      return 
+    } else {
+      removeDuplicates(nums, 'run');
+    }
+  };
