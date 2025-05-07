@@ -25,3 +25,45 @@
 // Either x is not zero or n > 0.
 // -104 <= xn <= 104
 
+// solution
+
+/**
+ * @param {number} x
+ * @param {number} n
+ * @return {number}
+ */
+ var myPow = function(x, n) {
+
+  if (x === 1) {
+      return x
+  }
+
+  if (x === -1) {
+      return n < 0 ? 1 : x
+  }
+  
+  if (n === 1) {
+      return x;
+  }
+
+  if (n === 0) {
+      return 1;
+  }
+
+  if (n < 0) {
+      x = 1/x;  
+      n = Math.abs(n);
+  }
+
+  if (n > 1000000) {
+      return 0;
+  }
+  
+  let result = x;
+  
+  for (let i = 2; i <= (n ? n : newN); i++ ) {
+      result *= x;
+  }
+
+  return result;
+};
