@@ -61,7 +61,7 @@
   
   let result = x;
   
-  for (let i = 2; i <= (n ? n : newN); i++ ) {
+  for (let i = 2; i <= n ; i++ ) {
     result *= x;
   }
 
