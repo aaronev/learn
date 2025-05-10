@@ -27,7 +27,6 @@ Constraints:
 -10 <= nums[i] <= 10
 All the numbers of nums are unique.
 */
-
 /**
  * @param {number[]} nums
  * @return {number[][]}
@@ -41,6 +40,10 @@ All the numbers of nums are unique.
       return [[], nums];
   }
 
+  if (nums.length === 2) {
+      return [[], nums[0], nums[1], [nums[0],nums[1]], nums];
+  }
+
   for (let i = 0; i < nums.length; i++) {
       if (nums[i] > 10 || nums[i] < -10) {
           return 0;
@@ -51,7 +54,7 @@ All the numbers of nums are unique.
   let counter = 0;
 
   const getArr = (counter) => {
-      if (counter !== nums.length) {
+      if (counter < nums.length) {
           arr.push([nums[counter]]);
 
           for (let i = counter; i > 0; i--) {
@@ -59,6 +62,7 @@ All the numbers of nums are unique.
                   arr.push([nums[counter-i], nums[counter]]);
               }
           }
+
           getArr(counter+1);
       } 
   };
