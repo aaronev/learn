@@ -31,7 +31,11 @@ All the numbers of nums are unique.
  * @param {number[]} nums
  * @return {number[][]}
  */
- var subsets = function(nums) {
+ /**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+var subsets = function(nums) {
   if (nums.length < 1 || nums.length > 10) {
       return 0;
   }   
@@ -41,7 +45,7 @@ All the numbers of nums are unique.
   }
 
   if (nums.length === 2) {
-      return [[], nums[0], nums[1], [nums[0],nums[1]], nums];
+      return [[], [nums[0]], [nums[1]], [nums[0],nums[1]], nums];
   }
 
   for (let i = 0; i < nums.length; i++) {
