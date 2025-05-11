@@ -31,3 +31,78 @@ Constraints:
 
 // explanation: https://www.geeksforgeeks.org/n-queen-problem-backtracking-3/
 
+
+/**
+ * @param {number} n
+ * @return {string[][]}
+ */
+ var solveNQueens = function(n) {
+  let obj = {};
+  let board = [];
+  let results = [];
+
+  const createBoard = () => {
+      for (let i = 1; i <=n; i++ ) {
+          obj[i] = []
+          for (let j = 1; j <=n; j++ ) {
+              obj[i].push(j);
+          }
+      }
+  };
+
+  const removeAvail = (row, col) => {
+      obj[row] = []; // remove row;
+      for (let i = col; i <= n; i++) {
+          obj[i].splice(obj[i].indexOf(col), 1); // removes all cols;
+          if (obj[row-i]) {
+              if (obj[row-i].indexOf(col+i) > -1) {
+                  obj[row-i].splice(obj[row-i].indexOf(col+i), 1)
+              }
+
+               if (obj[row-i].indexOf(col-i) > -1) {
+                  obj[row-i].splice(obj[row-i].indexOf(col-i), 1)
+              }
+          }
+
+           if (obj[row+i]) {
+              if (obj[row+i].indexOf(col+i) > -1) {
+                  obj[row+i].splice(obj[row+i].indexOf(col+i), 1)
+              }
+
+               if (obj[row+i].indexOf(col-i) > -1) {
+                  obj[row+i].splice(obj[row+i].indexOf(col-i), 1)
+              }
+          }
+      }
+  };
+
+  placeQueens = (row, col) => {
+      if (obj[row] !== undefined) {
+          if (obj[row].indexOf(col) > -1) {
+              
+              removeAvail(row, col);
+              
+              let str = '';
+              for (let i = 1; i <=n; i++) {
+                  if (col === i) {
+                      str+= 'Q';
+                  } else {
+                      str += '.'
+                  }
+              }
+
+              obj[row] = [];
+              obj[row].push(str);
+              placeQueens(row+1, obj[row+1][0]);
+          } else {
+              
+          }
+      }
+  };
+
+  createBoard();
+  placeQueens(1, 1);
+
+  return obj;
+  // return results;
+};
