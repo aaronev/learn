@@ -125,6 +125,10 @@ Constraints:
  var solveNQueens = function(n) {
   let results = [];
 
+  if ( n === 1) {
+      return [['Q']];
+  }
+
   const createBoard = () => {
       let board = {};
       let takenCols = [];
@@ -201,28 +205,29 @@ Constraints:
               board.add(row, col);
               for (let j = 0; j < n; j++) {
                   loop(row, j, board);
-                  loop(row+1, 0, board);
+                  loop(row+j, 0, board);
               }
           } else {
-              switch(check.reason) {
-                   case 'row':
-                      loop(row+1, col, board);
-                      break;
-                  default:
-                      for (let i = 0; i < n; i++) {
-                          let check = board.checkAvail(row, i)
-                          if (check.bool) {
-                              loop(row, i, board);
-                          } 
-                      }
-                      break;
+              for (let i = 0; i < n; i++) {
+                  let check = board.checkAvail(row, i)
+                  if (check.bool) {
+                      loop(row, i, board);
+                  } 
               }
           }
       } else {
           let finalResults = board.results();
           if (finalResults.length === n) {
-              console.log(finalResults);
-              results.push(finalResults);
+              let notExist = true;
+              for (let i = 0; i < results.length; i++) {
+                  if (results[i].toString() === finalResults.toString()) {
+                      notExist = false;
+                  }
+              }
+              if (notExist) {
+                  results.push(finalResults);
+              }
+              
           }
       }
   };
@@ -230,6 +235,6 @@ Constraints:
   for (let i = 0; i < n; i++) {
       loop(0, i, createBoard());
   };
-
+  
   return results;
 };
