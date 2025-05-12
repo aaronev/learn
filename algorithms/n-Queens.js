@@ -117,7 +117,12 @@ Constraints:
   // return results //.filter(arr => arr.length === n);
 
 
-var solveNQueens = function(n) {
+/**
+ * @param {number} n
+ * @return {string[][]}
+ */
+
+ var solveNQueens = function(n) {
   let results = [];
 
   const createBoard = () => {
@@ -190,36 +195,33 @@ var solveNQueens = function(n) {
   };
 
   const loop = (row, col, board) => {
-      console.log(row, col, board);
       if (row < n) {
           let check = board.checkAvail(row, col, board);
           if (check.bool) {
               board.add(row, col);
-              loop(row+1, col+2, board);
+              for (let j = 0; j < n; j++) {
+                  loop(row, j, board);
+                  loop(row+1, 0, board);
+              }
           } else {
               switch(check.reason) {
                    case 'row':
                       loop(row+1, col, board);
                       break;
                   default:
-                      let found = false;
                       for (let i = 0; i < n; i++) {
                           let check = board.checkAvail(row, i)
                           if (check.bool) {
-                              found = true;
-                          }
-                      }
-
-                      if (found) {
-                          loop(row, col+1 > n-1 ? 0 : col+1, board);
+                              loop(row, i, board);
+                          } 
                       }
                       break;
-                     
               }
           }
       } else {
           let finalResults = board.results();
           if (finalResults.length === n) {
+              console.log(finalResults);
               results.push(finalResults);
           }
       }
