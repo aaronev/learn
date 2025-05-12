@@ -116,90 +116,118 @@ Constraints:
   // placeQueens(1, counter);
   // return results //.filter(arr => arr.length === n);
 
-  let board = [];
+
+var solveNQueens = function(n) {
   let results = [];
-  let counter = 1;
 
-  const validSpace = (row, col) => {
-      
-      // array positions is different from number value;
-      rowPos = row-1;
-      colPos = col-1;
+  const createBoard = () => {
+      let board = {};
+      let takenCols = [];
+      let takenRows = [];
 
-      // row can't exists;
-      if (rowPos < 0) {
-          return false;
-      }
-
-      // check if row exists;
-      if (board[rowPos]) { 
-          return false;
-      }
-
-      // check if column is taken;
-      for (let i = 0; i < board.lenght; i++) {
-          if (board[i].indexOf('Q') === colPos) {
-              return false;
-          }
+      for (let i = 0; i < n; i++) {
+          board[i] = "";
       };
 
-      // check if diagnals are taken;
-      for (let i = 1; i <= n; i++) {
-          if (board[rowPos-i]) {
-              if (board[rowPos-i].indexOf('Q') === colPos-1) {
-                  return false;
+      board.results = () => {
+          let arr = [];
+          for (let i = 0; i < n; i++) {
+              if (board[i] !== '') {
+                   arr.push(board[i]);
+              }
+          }
+          return arr;
+      };
+
+      board.add = (r, c) => {
+          takenRows.push(r);
+          takenCols.push(c);
+          let str = '';
+          for (let i = 0; i < n; i++) {
+              if (i === c) {
+                  str += 'Q';
+              } else {
+                  str += '.';
               }
           }
 
-          if (board[rowPos+i]) {
-              if (board[rowPos+1].indexOf('Q') === colPos+1) {
-                  return false;
-              }
-          }
+          if (str.includes('Q')) {
+              board[r] += str;
+          } 
       };
 
-      return true;
-  };
+      board.checkAvail = (r, c) => {
+          let checkAvail={};
+          checkAvail.bool = true;
 
-  const loop = (row, col) => {
-      if (board.length <= n) {
-          if (validSpace(row,col)) {
-              let str  = '';
-              for (let i = 0; i < n; i++) {
-                  if (col === i) {
-                      str += 'Q';
-                  } else {
-                      str += '.';
+          if (takenCols.includes(c) || c >= n) {
+              checkAvail.bool = false;
+              checkAvail.reason = 'col';
+          }
+
+          if (takenRows.includes(r) || r >= n) {
+              checkAvail.bool = false;
+              checkAvail.reason = 'row';
+          }
+
+          for (let i = 0; i <= r ; i++) {
+              if (board[r-i]) {
+                  if (board[r-i].indexOf('Q') === c-i) {
+                      checkAvail.bool = false;
+                      checkAvail.reason = 'diaganal';
                   }
-              }
 
-              if (str.length === n) {
-                  board.push(str);
-              }
-
-              if (board.length === n) {
-                  results.push(board);
-              }
-
-              for (let i = 1; i <= n; i++) {
-                  loop(row+1, col+i);
-              }
-
-              if (board.length === n) {
-                  results.push(board);
-                  board = [];
-                  loop(1, counter++);
-              };
-              
-          } else {
-
+                   if (board[r-i].indexOf('Q') === c+i) {
+                      checkAvail.bool = false;
+                      checkAvail.reason = 'diaganal';
+                  }
+              }  
           }
+          
+          return checkAvail;
       };
+      return board;
   };
 
-  // loop(1, 1);
+  const loop = (row, col, board) => {
+      console.log(row, col, board);
+      if (row < n) {
+          let check = board.checkAvail(row, col, board);
+          if (check.bool) {
+              board.add(row, col);
+              loop(row+1, col+2, board);
+          } else {
+              switch(check.reason) {
+                   case 'row':
+                      loop(row+1, col, board);
+                      break;
+                  default:
+                      let found = false;
+                      for (let i = 0; i < n; i++) {
+                          let check = board.checkAvail(row, i)
+                          if (check.bool) {
+                              found = true;
+                          }
+                      }
 
-  // board=['....']
+                      if (found) {
+                          loop(row, col+1 > n-1 ? 0 : col+1, board);
+                      }
+                      break;
+                     
+              }
+          }
+      } else {
+          let finalResults = board.results();
+          if (finalResults.length === n) {
+              results.push(finalResults);
+          }
+      }
+  };
 
-  // return validSpace(1,1);
+  for (let i = 0; i < n; i++) {
+      loop(0, i, createBoard());
+  };
+
+  return results;
 };
