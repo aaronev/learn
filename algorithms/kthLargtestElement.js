@@ -22,3 +22,15 @@ Constraints:
 1 <= k <= nums.length <= 105
 -104 <= nums[i] <= 104
 */
+
+// solution
+
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number}
+ */
+ var findKthLargest = function(nums, k) {
+  return nums.sort((a,b) => b-a)[k-1];
+};
+
