@@ -34,19 +34,12 @@ nums2.length == n
  * @return {number}
  */
  var findMedianSortedArrays = function(nums1, nums2) {
-  let sum = 0;
+  let merged = nums1.concat(nums2);
+  let sorted = merged.sort((a,b) => a-b)
 
-
-
-  const add = (arr) => {
-      for (let i = 0; i < arr.length; i++) {
-          sum += arr[i]
-      }
-      return sum
+  if (sorted.length % 2 === 0) {
+      return (sorted[sorted.length/2 -1] + sorted[sorted.length/2]) / 2;
+  } else {
+      return sorted[Math.floor(sorted.length/2)];
   }
-
-  add(nums1);
-  add(nums2);
-
-  return Math.floor(sum / (nums1.length + nums2.length));
 };
