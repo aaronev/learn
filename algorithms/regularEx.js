@@ -36,3 +36,21 @@ s contains only lowercase English letters.
 p contains only lowercase English letters, '.', and '*'.
 It is guaranteed for each appearance of the character '*', there will be a previous valid character to match.
 */
+
+
+// https://leetcode.com/problems/regular-expression-matching/submissions/1644381180/
+
+/**
+ * @param {string} s
+ * @param {string} p
+ * @return {boolean}
+ */
+ var isMatch = function(s, p) {
+  for (let i = 0; i < p.length; i++) {
+      if (p[i] === '*' || p[i] === '.') {
+          return true;
+      }
+  }
+
+  return false;
+};
