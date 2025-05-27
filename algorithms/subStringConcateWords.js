@@ -52,3 +52,37 @@ s and words[i] consist of lowercase English letters.
 */
 
 //  https://leetcode.com/problems/substring-with-concatenation-of-all-words/description/
+
+
+/**
+ * @param {string} s
+ * @param {string[]} words
+ * @return {number[]}
+ */
+ var findSubstring = function(s, words) {
+  let counter = words[0].length;
+  let copy = [...words];
+  let results = [];
+  let found;
+
+  const findMatchS = (i) => {
+      if (copy.length > 0) {
+          if (copy.includes(s.slice(i, i+counter))) {
+              copy.splice(copy.indexOf(s.slice(i, i+counter)), 1);
+              findMatchS(i+counter);
+          } else {
+              copy = [...words];
+          }
+      } else {
+          results.push(found);
+          copy = words;
+      }
+  }
+
+  for (let i = 0; i < s.length; i++) {
+      found = i;
+      findMatchS(i);
+  };
+
+  return results
+}
