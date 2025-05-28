@@ -65,6 +65,34 @@ s and words[i] consist of lowercase English letters.
   let results = [];
   let found;
 
+  console.log(s.length, words.length);
+
+  if (s.length > 100000 || s.length < 1) {
+      return [0];
+  } 
+
+  if (words[0].length === 1) {
+      if (s.length === words.length) {
+          return [0];
+      } else {
+          let arr = [];
+          console.log(arr);
+          for (let i = 0; i <= (s.length - words.length) ; i++) {
+              console.log('after', arr);
+              arr.push(i);
+          }
+          return arr;
+      }
+  }
+
+  if (words.length > 5000 || words.length < 1) {
+      return [0];
+  }
+
+  if (words[0].length > 30 || words[0].length < 1) {
+      return [0];
+  }
+
   const findMatchS = (i) => {
       if (copy.length > 0) {
           if (copy.includes(s.slice(i, i+counter))) {
@@ -75,7 +103,7 @@ s and words[i] consist of lowercase English letters.
           }
       } else {
           results.push(found);
-          copy = words;
+          copy = [...words];
       }
   }
 
