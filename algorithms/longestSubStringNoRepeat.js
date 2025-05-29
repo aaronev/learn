@@ -31,3 +31,30 @@ Constraints:
 0 <= s.length <= 5 * 104
 s consists of English letters, digits, symbols and spaces.
 */
+
+// https://leetcode.com/problems/longest-substring-without-repeating-characters/
+
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var lengthOfLongestSubstring = function(s) {
+  let arr = [];
+  let count = 1;
+  let max = 0;
+
+  for (let i = 0; i < s.length; i++) {
+      if (!arr.includes(s[i])) {
+          arr.push(s[i]);
+          count++
+      } else {
+          if (count > max) {
+              max = count;
+              count = 0;
+              arr = [];
+          }
+      }
+  }
+
+  return count;
+};
