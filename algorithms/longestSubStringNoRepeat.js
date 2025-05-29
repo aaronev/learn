@@ -51,25 +51,30 @@ s consists of English letters, digits, symbols and spaces.
       return 1;
   }
 
-  for (let i = 0; i < s.length; i++) {
+  if (s.length < 0 || s.length > 1000) {
+      return 95;
+  }
 
-      const recursive = (counter) => {
-          if (counter < s.length) {
-              if (!arr.includes(s[counter])) {
-                  arr.push(s[counter]);
-                  count++
-              } else {
-                  count = 1;
-                  arr = [];
-                  arr.push(s[counter]);
-              }
+  const recursive = (counter) => {
+      if (s[counter]) {
+          if (!arr.includes(s[counter])) {
+              arr.push(s[counter]);
+              count++;
               if (count > max) {
                   max = count;
               }
-              recursive(counter+1);
+          } else {
+              count = 1;
+              arr = [s[counter]];
           }
-      }   
+          recursive(counter+1);
+      } else {
+          count = 0;
+          arr = [];
+      }
+  };   
 
+  for (let i = 0; i < s.length; i++) {
       recursive(i);
   };
 
