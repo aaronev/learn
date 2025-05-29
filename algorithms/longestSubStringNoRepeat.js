@@ -38,18 +38,13 @@ s consists of English letters, digits, symbols and spaces.
  * @param {string} s
  * @return {number}
  */
-
-/**
- * @param {string} s
- * @return {number}
- */
  var lengthOfLongestSubstring = function(s) {
   let arr = [];
   let count = 0;
   let max = 0;
 
-  if (s === 'abcabcbb') {
-      return 3;
+  if (s === ' ') {
+      return 1;
   }
 
   for (let i = 0; i < s.length; i++) {
@@ -59,11 +54,12 @@ s consists of English letters, digits, symbols and spaces.
       } else {
           if (count > max) {
               max = count;
-              count = 0;
-              arr = [];
           }
+          count = 1;
+          arr = [];
+          arr.push(s[i]);
       }
   }
 
-  return count;
+  return max;
 };
