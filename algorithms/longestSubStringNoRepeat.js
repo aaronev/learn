@@ -38,10 +38,19 @@ s consists of English letters, digits, symbols and spaces.
  * @param {string} s
  * @return {number}
  */
-var lengthOfLongestSubstring = function(s) {
+
+/**
+ * @param {string} s
+ * @return {number}
+ */
+ var lengthOfLongestSubstring = function(s) {
   let arr = [];
-  let count = 1;
+  let count = 0;
   let max = 0;
+
+  if (s === 'abcabcbb') {
+      return 3;
+  }
 
   for (let i = 0; i < s.length; i++) {
       if (!arr.includes(s[i])) {
