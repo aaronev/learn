@@ -47,19 +47,31 @@ s consists of English letters, digits, symbols and spaces.
       return 1;
   }
 
-  for (let i = 0; i < s.length; i++) {
-      if (!arr.includes(s[i])) {
-          arr.push(s[i]);
-          count++
-      } else {
-          if (count > max) {
-              max = count;
-          }
-          count = 1;
-          arr = [];
-          arr.push(s[i]);
-      }
+  if (s.length === 1) {
+      return 1;
   }
+
+  for (let i = 0; i < s.length; i++) {
+
+      const recursive = (counter) => {
+          if (counter < s.length) {
+              if (!arr.includes(s[counter])) {
+                  arr.push(s[counter]);
+                  count++
+              } else {
+                  count = 1;
+                  arr = [];
+                  arr.push(s[counter]);
+              }
+              if (count > max) {
+                  max = count;
+              }
+              recursive(counter+1);
+          }
+      }   
+
+      recursive(i);
+  };
 
   return max;
 };
