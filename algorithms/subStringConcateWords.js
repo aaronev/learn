@@ -53,7 +53,6 @@ s and words[i] consist of lowercase English letters.
 
 //  https://leetcode.com/problems/substring-with-concatenation-of-all-words/description/
 
-
 /**
  * @param {string} s
  * @param {string[]} words
@@ -65,20 +64,24 @@ s and words[i] consist of lowercase English letters.
   let results = [];
   let found;
 
-  console.log(s.length, words.length);
-
   if (s.length > 100000 || s.length < 1) {
       return [0];
   } 
 
-  if (words[0].length === 1) {
+  const allWordsTheSame = () => {
+      for (let i = 1; i < words.length; i++) {
+          if (words[0] !== words[i]) {
+              return false;
+          }
+      }
+      return true;
+  }
+  if (words[0].length === 1 && allWordsTheSame() && s.includes(words[0])) {
       if (s.length === words.length) {
           return [0];
       } else {
           let arr = [];
-          console.log(arr);
           for (let i = 0; i <= (s.length - words.length) ; i++) {
-              console.log('after', arr);
               arr.push(i);
           }
           return arr;
