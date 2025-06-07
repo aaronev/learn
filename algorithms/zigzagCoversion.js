@@ -43,3 +43,41 @@ s consists of English letters (lower-case and upper-case), ',' and '.'.
 */
 
 // https://leetcode.com/problems/zigzag-conversion/
+
+/**
+ * @param {string} s
+ * @param {number} numRows
+ * @return {string}
+ */
+ var convert = function(s, numRows) {
+  let str = '';
+  let obj = {};
+  let zigzag = false;
+
+  let counter = 0;
+
+  for (let i = 0; i < numRows; i++) {
+       obj[i] = '';
+  }
+  
+   for (let i = 0; i < s.length; i++) {
+
+       obj[counter] += s[i];
+
+       if (counter === 0) {
+           zigzag = false;
+       } else if (counter === numRows-1) {
+           zigzag = true;
+       }
+
+       zigzag ? counter-- : counter++ 
+   }
+
+   console.log(obj);
+
+   for (key in obj) {
+       str += obj[key];
+   }
+
+  return str;
+};
