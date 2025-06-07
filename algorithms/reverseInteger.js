@@ -36,21 +36,23 @@ Constraints:
  * @return {number}
  */
  var reverse = function(x) {
-  let str = x+'';
-
-
-  let arr = str.split('').reverse();
-
-   console.log('before', arr); 
-
-  if (arr[0] == 0) {
-      arr.shift();
+  if (x > 1000000000 || x < -1000000000) {
+     return 0;
   }
 
-  if (arr[arr.length-1] === '-') {
-      arr.pop()
-      arr.unshift('-');
-  }
+ let str = x+'';
 
-  return Number(arr.join(''));
+ let arr = str.split('').reverse();
+
+
+ if (arr[0] == 0) {
+     arr.shift();
+ }
+
+ if (arr[arr.length-1] === '-') {
+     arr.pop()
+     arr.unshift('-');
+ }
+
+ return Number(arr.join(''));
 };
