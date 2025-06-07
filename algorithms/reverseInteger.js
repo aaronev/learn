@@ -30,3 +30,27 @@ Constraints:
 
 // https://leetcode.com/problems/reverse-integer/description/
 
+
+/**
+ * @param {number} x
+ * @return {number}
+ */
+ var reverse = function(x) {
+  let str = x+'';
+
+
+  let arr = str.split('').reverse();
+
+   console.log('before', arr); 
+
+  if (arr[0] == 0) {
+      arr.shift();
+  }
+
+  if (arr[arr.length-1] === '-') {
+      arr.pop()
+      arr.unshift('-');
+  }
+
+  return Number(arr.join(''));
+};
