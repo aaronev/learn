@@ -77,8 +77,6 @@ s consists of English letters (lower-case and upper-case), ',' and '.'.
        zigzag ? counter-- : counter++ 
    }
 
-   console.log(obj);
-
    for (key in obj) {
        str += obj[key];
    }
