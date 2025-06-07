@@ -56,6 +56,10 @@ s consists of English letters (lower-case and upper-case), ',' and '.'.
 
   let counter = 0;
 
+  if (numRows === 1) {
+   return s;
+  }
+
   for (let i = 0; i < numRows; i++) {
        obj[i] = '';
   }
