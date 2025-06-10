@@ -42,3 +42,5 @@ Guides and reference solutions from Senior Big Tech engineers
 Use a front end skill roadmap to build from beginner to pro
 Get 30% off now with BETA30 →
 */
+
+// https://www.greatfrontend.com/questions/javascript/clamp?practice=practice&tab=coding
