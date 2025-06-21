@@ -1,6 +1,10 @@
-let numbers: number[]=[];
+const small = 1;
+const medium = 2;
+const large = 3;
 
-numbers.forEach(n => n);
+//PascalCase
+enum Size { Small = 1, Medium, Large}
 
-let user: [number, string] = [1, 'mosh'];
-user[1].
+let mySize: Size = Size.Medium;
+
+console.log(mySize);
