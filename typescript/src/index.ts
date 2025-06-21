@@ -1,6 +1,6 @@
-console.log('hello');
-let age: number = 20;
+let numbers: number[]=[];
 
-if (age < 50) {
-  age += 10;
-}
+numbers.forEach(n => n);
+
+let user: [number, string] = [1, 'mosh'];
+user[1].
