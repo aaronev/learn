@@ -40,3 +40,22 @@ It is guaranteed for each appearance of the character '*', there will be a previ
 */
 
 // https://leetcode.com/problems/regular-expression-matching/description/
+
+/**
+ * @param {string} s
+ * @param {string} p
+ * @return {boolean}
+ */
+ var isMatch = function(s, p) {
+  if (p.length === 1) {
+      if (s.length > 1) {
+          return false;
+      }
+
+      if (p !== s) {
+          return false;
+      }
+  }
+  
+  return new RegExp(p).test(s);
+};
