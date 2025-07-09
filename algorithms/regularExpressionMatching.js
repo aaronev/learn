@@ -48,22 +48,8 @@ It is guaranteed for each appearance of the character '*', there will be a previ
  */
  var isMatch = function(s, p) {
 
-  if (p === '.*') {
-      return true;
-  }
-
-  if (s.length < 1 || s.length > 20) {
-      return false;
-  }
-
-  if (p.length < 1 || p.length > 20) {
-      return false;
-  }
-
-  if (s.match(new RegExp(p))) {
-      return s.match(new RegExp(p))[0] === s;
-  }
-  
-  return new RegExp(p).test(s);
+  return s.match(new RegExp(p))
+      ? s.match(new RegExp(p))[0] === s
+      : false;
 
 };
