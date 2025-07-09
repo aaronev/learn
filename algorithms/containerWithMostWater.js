@@ -41,5 +41,30 @@ n == height.length
  * @return {number}
  */
  var maxArea = function(height) {
-    
+  let max = 0;
+
+  const findMaxArea = (cur, curIndex, nextInd) => {
+      let distance = nextInd - curIndex;
+      let lowestHeight = height[nextInd] > height[curIndex] 
+          ? height[curIndex] : height[nextInd];
+
+      let res = distance * lowestHeight;
+
+      console.log(cur, distance, lowestHeight, res);
+
+      if (res > max) {
+          max = res;
+      }
+
+      if (height[nextInd+1]) {
+          findMaxArea(cur, curIndex, nextInd+1);
+      }
+  };
+
+  for (let i = 0; i < height.length; i++) {
+      findMaxArea(height[i], i, i+1);
+  }
+
+  return max;
+
 };
