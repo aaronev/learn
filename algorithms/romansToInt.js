@@ -65,13 +65,29 @@ It is guaranteed that s is a valid roman numeral in the range [1, 3999].
       C: 100,
       D: 500,
       M: 1000,
+      IV: 4, 
+      IX: 9,
+      XL: 40,
+      XC: 90,
+      CD: 400,
+      CM: 900
   }
 
   let toInt = 0;
 
   for (let i = 0; i < s.length; i++) {
-      console.log(toInt, romans[s[i]], s[i]);
-      toInt+=romans[s[i]]
+      if (s[i]+s[i+1] === 'IV' 
+          || s[i]+s[i+1] === 'IX'
+          || s[i]+s[i+1] === 'XL'
+          || s[i]+s[i+1] === 'XC'
+          || s[i]+s[i+1] === 'CD'
+          || s[i]+s[i+1] === 'CM'
+          ) {
+          toInt+=romans[s[i]+s[i+1]];
+          i++
+      } else {
+          toInt+=romans[s[i]];
+      }
   }
 
   return toInt;
