@@ -40,31 +40,83 @@ n == height.length
  * @param {number[]} height
  * @return {number}
  */
+
  var maxArea = function(height) {
-  let max = 0;
 
-  const findMaxArea = (cur, curIndex, nextInd) => {
-      let distance = nextInd - curIndex;
-      let lowestHeight = height[nextInd] > height[curIndex] 
-          ? height[curIndex] : height[nextInd];
-
-      let res = distance * lowestHeight;
-
-      console.log(cur, distance, lowestHeight, res);
-
-      if (res > max) {
-          max = res;
-      }
-
-      if (height[nextInd+1]) {
-          findMaxArea(cur, curIndex, nextInd+1);
-      }
-  };
-
-  for (let i = 0; i < height.length; i++) {
-      findMaxArea(height[i], i, i+1);
+  if (height.length < 0 || height.length > 100000) {
+      return 0;
   }
 
-  return max;
+  let max = 0;
 
+  for (let i = 0; i < height.length; i++) {
+      // search forwards
+      for (let j = i+1; j < height.length; j++) {
+          let distance = j - i;
+          let h = height[i] > height[j] ? height[j] : height[i];
+
+          let res = distance * h;
+
+          if (res > max) {
+              max  = res;
+          }
+      }
+
+      // search backwards
+      for (let j = height.length-1-i; j > 0; j--) {
+          let distance = j - i;
+          let h = height[i] > height[j] ? height[j] : height[i];
+
+          let res = distance * h;
+
+          if (res > max) {
+              max  = res;
+          }
+      }
+  };
+  
+  // let lHigh = 0;
+  // let foundInd = [];
+  // let alreadyFound = [];
+
+  // // find highest descrease
+
+  // for (let i = 0; i < height.length; i++) {
+  //     if (!alreadyFound.includes(i)) {
+  //         if (height[i] === lHigh) {
+  //             foundInd.push(i);
+  //             alreadyFound.push(i);
+  //         } else if (height[i] > lHigh) {
+  //             lHigh = height[i];
+  //             foundInd = [i];
+  //             alreadyFound.push(i);
+  //         }
+  //     }
+  // }
+
+  // // for (let i = 0; i < (height.length > 1000 ? 100 : height.length); i++) {
+      
+  // // loop only highest index
+
+  // for (let i = 0; i < foundInd.length; i++) {
+  //     for (let j = i+i; j < height.length; j++) {
+          
+  //         let distance = j > foundInd[i] ? j - foundInd[i] : foundInd[i] - j;
+
+  //         let lowestHeight = height[j] > height[foundInd[i]] 
+  //             ? height[foundInd[i]] : height[j];
+
+  //         let res = distance * lowestHeight;
+
+  //         console.log(res, foundInd[i], lHigh);
+          
+  //         if (res > max) {
+  //             max = res;
+  //         }
+  //     }
+  // }
+
+  // };
+
+  return max;
 };
