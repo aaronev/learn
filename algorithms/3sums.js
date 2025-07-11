@@ -34,3 +34,41 @@ Constraints:
 */
 
 // https://leetcode.com/problems/3sum/description/
+
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+ var threeSum = function(nums) {
+  if (nums.length < 3 || nums.length > 3000) {
+      return [];
+  }
+
+  const newNums = nums.filter(n => n >= -100000 && n <= 100000);
+  const negNums = newNums.filter(n => n < 0);
+  const zeros = newNums.filter(n => n == 0);
+
+  let res = [];
+  let usedVal = [];
+
+  if (zeros.length > 2) {
+      usedVals = ['0,0,0']
+      res = [[0,0,0]]
+  }
+  
+  for (let i = 0; i < newNums.length; i++) {
+      for (let j=0; j < newNums.length; j++) {
+          let neg = 0 - (newNums[i]+newNums[j]);
+          if ( neg !== 0 && newNums.includes(neg) && j !== i) {
+              let newArr = [newNums[i], newNums[j], neg].sort((a,b)=> a-b);
+              let used = `${newArr[0],newArr[1], newArr[2]}`;
+              if (!usedVal.includes(used)) {
+                  usedVal.push(used);
+                  res.push([newNums[i], newNums[j], neg]);
+              }
+          }
+      }
+  };
+
+  return res;
+};
