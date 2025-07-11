@@ -67,3 +67,60 @@ Constraints:
 */
 
 // https://leetcode.com/problems/integer-to-roman/
+
+
+/**
+ * @param {number} num
+ * @return {string}
+ */
+
+ var intToRoman = function(num) {
+  let romans = ''
+
+  const toRomans = (n) => {
+      console.log(n);
+      if (n - 1000 >= 0) {
+          romans+='M'
+          toRomans(n-1000);
+      } else if (n - 900 >= 0) {
+          romans+='CM'
+          toRomans(n-900);
+      } else if (n - 500 >= 0) {
+          romans+='D'
+          toRomans(n-500);
+      } else if (n-400 >= 0) {
+          romans+='CD'
+          toRomans(n-400);
+      } else if (n-100 >= 0) {
+          romans+='C'
+          toRomans(n-100);
+      } else if (n-90 >= 0) {
+          romans+='XC'
+          toRomans(n-90);
+      } else if (n-50 >= 0) {
+          romans+='L'
+          toRomans(n-50);
+      } else if (n-40 >= 0) {
+          romans+='XL'
+          toRomans(n-40);
+      } else if (n-10 >= 0) {
+          romans+='X'
+          toRomans(n-10);
+      } else if (n-9 >= 0) {
+          romans+='IX'
+          toRomans(n-9);
+      } else if (n-5 >= 0) {
+          romans+='V'
+          toRomans(n-5);
+      } else if (n-4 >= 0) {
+          romans+='IV'
+          toRomans(n-4);
+      } else if (n-1 >= 0) {
+          romans+='I'
+          toRomans(n-1);
+      } 
+  };
+  
+  toRomans(num);
+  return romans;
+};
