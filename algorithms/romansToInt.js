@@ -51,3 +51,12 @@ It is guaranteed that s is a valid roman numeral in the range [1, 3999].
 */
 
 // https://leetcode.com/problems/roman-to-integer/description/
+
+
+/**
+ * @param {string} s
+ * @return {number}
+ */
+ var romanToInt = function(s) {
+  
+};
