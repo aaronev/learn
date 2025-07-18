@@ -44,18 +44,16 @@ Constraints:
         return [];
     }
 
-    const reduced = nums.reduce((acc, item) => {
-        if (!acc.includes(item)) acc.push(item);
-        return acc;
-    }, []);
-
-    if (reduced.length === 1 && reduced[0] === 0) {
-        return [[0,0,0]]; 
-    }
-
     let n = nums.filter(x => x >= -100000 && x <= 100000).sort((a,b) => a-b);
     let res = [];
     let foundCombos = [];
+
+    const reduced = nums.filter(num => num === 0);
+
+    if (reduced.length > 1) {
+        foundCombos.push(`${[0,0,0]}`);
+        res.push([0,0,0]);
+    }
 
     const findCombo = (x,y,opp) => {
         if (n.includes(opp)) {
