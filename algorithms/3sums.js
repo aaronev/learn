@@ -40,35 +40,55 @@ Constraints:
  * @return {number[][]}
  */
  var threeSum = function(nums) {
-  if (nums.length < 3 || nums.length > 3000) {
-      return [];
-  }
+    if (nums.length < 3 || nums.length > 3000) {
+        return [];
+    }
 
-  const newNums = nums.filter(n => n >= -100000 && n <= 100000);
-  const negNums = newNums.filter(n => n < 0);
-  const zeros = newNums.filter(n => n == 0);
+    const reduced = nums.reduce((acc, item) => {
+        if (!acc.includes(item)) acc.push(item);
+        return acc;
+    }, []);
 
-  let res = [];
-  let usedVal = [];
+    if (reduced.length === 1 && reduced[0] === 0) {
+        return [[0,0,0]]; 
+    }
 
-  if (zeros.length > 2) {
-      usedVals = ['0,0,0']
-      res = [[0,0,0]]
-  }
-  
-  for (let i = 0; i < newNums.length; i++) {
-      for (let j=0; j < newNums.length; j++) {
-          let neg = 0 - (newNums[i]+newNums[j]);
-          if ( neg !== 0 && newNums.includes(neg) && j !== i) {
-              let newArr = [newNums[i], newNums[j], neg].sort((a,b)=> a-b);
-              let used = `${newArr[0],newArr[1], newArr[2]}`;
-              if (!usedVal.includes(used)) {
-                  usedVal.push(used);
-                  res.push([newNums[i], newNums[j], neg]);
-              }
-          }
-      }
-  };
+    let n = nums.filter(x => x >= -100000 && x <= 100000).sort((a,b) => a-b);
+    let res = [];
+    let foundCombos = [];
 
-  return res;
+    const findCombo = (x,y,opp) => {
+        if (n.includes(opp)) {
+            if (n.indexOf(opp) !== n.indexOf(x) && n.indexOf(opp) !== n.indexOf(y)) {
+                newArr = [x,y,opp].sort((a,b) => a-b);
+                if (!foundCombos.includes(`${newArr}`)) { // combonation does not exist
+                    foundCombos.push(`${newArr}`);
+                    // push to results;
+                    res.push(newArr);
+                }
+            }
+        }
+    }
+    
+    // if i had to loop just once
+    for (let i = 0; i < n.length; i++) {
+        
+        // find opposite value if 0 exists;
+        if (n.includes(0)) {
+            // if n i is greater than 0 then see if negative value exists
+            let firstNum = n[i];
+            let secondNum = 0;
+            let opp = n[i] > 0 ? -n[i] : Math.abs(n[i]);
+            findCombo(n[i], 0, opp);
+        };
+
+        for (let j = i+1; j < n.length; j++) {
+            let firstPart = n[i]+n[j];
+            let opp = firstPart > 0 ? -firstPart : Math.abs(firstPart);
+            findCombo(n[i], n[j], opp);
+        }
+
+    };
+
+    return res;
 };
