@@ -34,59 +34,46 @@ Constraints:
 */
 
 // https://leetcode.com/problems/3sum/description/
-
 /**
  * @param {number[]} nums
  * @return {number[][]}
  */
+
  var threeSum = function(nums) {
-    if (nums.length < 3 || nums.length > 3000) {
-        return [];
-    }
+    
+    nums.sort((a, b) => a - b); // Sort the array to handle duplicates and use two pointers
+    const result = [];
 
-    let n = nums.filter(x => x >= -100000 && x <= 100000).sort((a,b) => a-b);
-    let res = [];
-    let foundCombos = [];
+    for (let i = 0; i < nums.length - 2; i++) {
+        // Skip duplicate values for the first element of the triplet
+        if (i > 0 && nums[i] === nums[i - 1]) {
+            continue;
+        }
 
-    const reduced = nums.filter(num => num === 0);
+        let left = i + 1; // Left pointer starts after 'i'
+        let right = nums.length - 1; // Right pointer starts at the end of the array
 
-    if (reduced.length > 1) {
-        foundCombos.push(`${[0,0,0]}`);
-        res.push([0,0,0]);
-    }
+        while (left < right) {
+            const sum = nums[i] + nums[left] + nums[right];
 
-    const findCombo = (x,y,opp) => {
-        if (n.includes(opp)) {
-            if (n.indexOf(opp) !== n.indexOf(x) && n.indexOf(opp) !== n.indexOf(y)) {
-                newArr = [x,y,opp].sort((a,b) => a-b);
-                if (!foundCombos.includes(`${newArr}`)) { // combonation does not exist
-                    foundCombos.push(`${newArr}`);
-                    // push to results;
-                    res.push(newArr);
+            if (sum === 0) {
+                result.push([nums[i], nums[left], nums[right]]);
+                // Skip duplicate values for the left pointer
+                while (left < right && nums[left] === nums[left + 1]) {
+                    left++;
                 }
+                // Skip duplicate values for the right pointer
+                while (left < right && nums[right] === nums[right - 1]) {
+                    right--;
+                }
+                left++;
+                right--;
+            } else if (sum < 0) {
+                left++; // Increase sum by moving left pointer to the right
+            } else { // sum > 0
+                right--; // Decrease sum by moving right pointer to the left
             }
         }
     }
-    
-    // if i had to loop just once
-    for (let i = 0; i < n.length; i++) {
-        
-        // find opposite value if 0 exists;
-        if (n.includes(0)) {
-            // if n i is greater than 0 then see if negative value exists
-            let firstNum = n[i];
-            let secondNum = 0;
-            let opp = n[i] > 0 ? -n[i] : Math.abs(n[i]);
-            findCombo(n[i], 0, opp);
-        };
-
-        for (let j = i+1; j < n.length; j++) {
-            let firstPart = n[i]+n[j];
-            let opp = firstPart > 0 ? -firstPart : Math.abs(firstPart);
-            findCombo(n[i], n[j], opp);
-        }
-
-    };
-
-    return res;
+    return result;
 };
