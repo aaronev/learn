@@ -46,6 +46,10 @@
       return target;
   }
 
+  if (nums.length === 3) {
+      return nums[0]+nums[1]+nums[2];
+  }
+
   for (let i = 0; i < nums.length-2; i++) {
       let counter = i+1;
       while(counter+1 < nums.length) {
