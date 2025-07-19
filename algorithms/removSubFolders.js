@@ -36,3 +36,5 @@
 // folder[i] contains only lowercase letters and '/'.
 // folder[i] always starts with the character '/'.
 // Each folder name is unique.
+
+// https://leetcode.com/problems/remove-sub-folders-from-the-filesystem/description/?envType=daily-question&envId=2025-07-19
