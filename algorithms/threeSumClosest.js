@@ -48,7 +48,7 @@
 
   for (let i = 0; i < nums.length-2; i++) {
       let counter = i+1;
-      while(nums[counter] && nums[counter+1]) {
+      while(counter+1 < nums.length) {
           let theSum = nums[i] + nums[counter] +nums[counter+1];
           console.log(theSum)
           if (theSum === target) {
