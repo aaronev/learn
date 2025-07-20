@@ -38,3 +38,25 @@
 // Each folder name is unique.
 
 // https://leetcode.com/problems/remove-sub-folders-from-the-filesystem/description/?envType=daily-question&envId=2025-07-19
+
+/**
+ * @param {string[]} folder
+ * @return {string[]}
+ */
+ var removeSubfolders = function(f) {
+  // sorted the folder from short length to longest length
+  const folder = [...f.sort((a,b) => a.length-b.length)]; 
+
+  for (let i = 0; i < folder.length; i++) {
+      for (let j = i+1; j < folder.length; j++) {
+          if (folder[j].match(folder[i])) {
+              if (folder[j].substring(0, folder[i].length+1) === `${folder[i]}/`
+              || !folder[j].substring(0, folder[i].length+1) ) {
+                   f.splice(f.indexOf(folder[j]), 1);
+              }
+          }
+      }
+  }
+  
+  return f;
+};
