@@ -46,19 +46,29 @@
  var removeSubfolders = function(folder) {
   // sorted the folder from short length to longest length
   folder.sort((a,b) => a.length-b.length);
-
-  function removeMatch(str) {
+  const results = [folder[0]];
+  
+  function removeMatch(str, ind) {
       for (let i = 0; i < folder.length; i++) {
-          if (folder[i].match(str) && folder[i].substring(0, str.length+1) === `${str}/`) {
-              console.log(folder);
+          if (folder[i].substring(0, str.length) === str && folder[i].substring(0, str.length+1) === `${str}/`) {
               folder.splice(folder.indexOf(folder[i]), 1);
               i=0;
           }
       }
   };
-  
+
+  // function removeMatch(str, ind) {
+  //     for (let i = ind+1; i < folder.length; i++) {
+  //         if (!folder[i].substring(0, str.length) === str 
+  //         && folder[i].substring(0, str.length+1) === `${str}/`) {
+  //             results.push(folder[i]);
+  //         }
+  //     }
+  // };
+
+
   for (let i = 0; i < folder.length; i++) {
-      removeMatch(folder[i])
+      removeMatch(folder[i]);
   }
 
   return folder;
