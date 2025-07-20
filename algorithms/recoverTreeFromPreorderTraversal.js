@@ -95,6 +95,11 @@ The number of nodes in the original tree is in the range [1, 1000].
       }
   }
 
+  // The result is the root of the tree. It's the last node added to the stack.
+  while (nodesStack.length > 1) {
+      nodesStack.pop();
+  }
+
   // We return the root of the binary tree which the stack should now contain
   return nodesStack.length > 0 ? nodesStack[0] : null;
 }
