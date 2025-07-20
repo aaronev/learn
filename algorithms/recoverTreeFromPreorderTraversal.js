@@ -39,3 +39,62 @@ The number of nodes in the original tree is in the range [1, 1000].
 */
 
 // https://leetcode.com/problems/recover-a-tree-from-preorder-traversal/description/?envType=daily-question&envId=2025-07-19
+
+/**
+ * Definition for a binary tree node.
+ * class TreeNode {
+ *     val: number
+ *     left: TreeNode | null
+ *     right: TreeNode | null
+ *     constructor(val?: number, left?: TreeNode | null, right?: TreeNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.left = (left===undefined ? null : left)
+ *         this.right = (right===undefined ? null : right)
+ *     }
+ * }
+ */
+
+ function recoverFromPreorder(traversal: string): TreeNode | null {
+  let nodesStack: TreeNode[] = [];
+  let currentDepth = 0;
+  let currentValue = 0;
+
+  for (let i = 0; i < traversal.length; ++i) {
+      if (traversal[i] === '-') {
+          // Increment the depth for every '-' character encountered
+          currentDepth++;
+      } else {
+          // Calculate the node's value
+          currentValue = 10 * currentValue + parseInt(traversal[i]);
+      }
+
+      // Check for end of number or end of string
+      if (i + 1 === traversal.length || (traversal[i] !== '-' && traversal[i + 1] === '-')) {
+          let newNode = new TreeNode(currentValue);
+
+          // If the stack size is greater than the current depth, pop until the sizes match
+          while (nodesStack.length > currentDepth) {
+              nodesStack.pop();
+          }
+
+          // If stack is not empty, assign the newNode to the appropriate child of the top node
+          if (nodesStack.length > 0) {
+              if (nodesStack[nodesStack.length - 1].left === null) {
+                  nodesStack[nodesStack.length - 1].left = newNode;
+              } else {
+                  nodesStack[nodesStack.length - 1].right = newNode;
+              }
+          }
+
+          // Push the new node onto the stack
+          nodesStack.push(newNode);
+
+          // Reset current depth and value for the next node
+          currentDepth = 0;
+          currentValue = 0;
+      }
+  }
+
+  // We return the root of the binary tree which the stack should now contain
+  return nodesStack.length > 0 ? nodesStack[0] : null;
+}
