@@ -1,5 +1,5 @@
-let userName; 
+let userName: string;
 
 //... 
 
-userName = 'max';
+userName = 'testing';
