@@ -17,5 +17,5 @@ add(10, 3);
 let age: string|number = 36;
 
 age = '34';
-
-age = {}
+age = 3;
+age = [];
