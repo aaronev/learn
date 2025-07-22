@@ -7,9 +7,15 @@ userName = 'testing';
 userAge = 0;
 
 function add(a:number, b=5) {
+  console.log(a+b);
   return a + b;
 };
 
 add(10);
-add(10, '5');
+add(10, 3);
 
+let age: string|number = 36;
+
+age = '34';
+
+age = {}
