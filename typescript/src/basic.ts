@@ -18,4 +18,7 @@ let age: string|number = 36;
 
 age = '34';
 age = 3;
-age = [];
+
+let hobbies: string[]  = ['sports', 'cooking'];
+
+// hobbies.push(9); numbers are not allowed in the array
