@@ -79,6 +79,50 @@ enum Role {
   Guest,
 } 
 
-let userRole: 'admin' | 'editor' | 'guest' = 'admin' // Role = 5;
+
 
 userRole = 'guest';
+
+type Roll = 'admin' | 'editor' | 'guest' | 'reader';
+
+let userRole: Roll;
+
+const myFunc = (roll: Roll) => {
+  return roll;
+}
+
+function adds(a:number, b:number): number {
+  return a+b;
+};
+
+function log(message: string): void { // returns nothing
+  console.log(message);
+};
+
+function logAndThrow(errorMessage: string): never { // never means that this function will never complete.
+  console.log(errorMessage);
+  throw new Error(errorMessage);
+};
+
+const logged = logAndThrow('hi');
+
+function performJob(cb: (m: string) => void) {
+  // ...
+  cb('jobd done');
+}
+
+performJob(log);
+
+type User = {
+  name: string;
+  age: number;
+  greet: (msg: string) => string 
+}
+
+let user: User = {
+  name: 'Max',
+  age: 39,
+  greet: () => {
+    return;
+  },
+}
