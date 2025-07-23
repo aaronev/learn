@@ -57,3 +57,9 @@ let userObj: {
   name: "max",
   age: 30,
 }
+
+let val: {} = 'some text';
+
+val = null;
+
+// {} means any value that is not null or undefined.
