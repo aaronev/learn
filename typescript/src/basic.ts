@@ -63,3 +63,11 @@ let val: {} = 'some text';
 val = null;
 
 // {} means any value that is not null or undefined.
+
+let data: Record<string, number|string>;
+
+data = {
+ test: 1,
+}
+
+data = ''; // not acecptable
