@@ -32,3 +32,28 @@ users = [1, '23'];
 let arrayUsers: Array<string|number>;
 
 arrayUsers = ['123', 123];
+
+let possibleResults: [number, number, string];
+
+possibleResults = [1,-1];
+
+possibleResults = [4, 10];
+
+possibleResults = [4, 10, 3];
+
+possibleResults = [4, 'asdf'];
+
+possibleResults = [4, 10, 'asdefsadf'];
+
+let userObj: {
+  name: string;
+  age: number;
+  hobbies?: string[];
+  role?: {
+    description: string;
+    id: number;
+  }
+} = {
+  name: "max",
+  age: 30,
+}
