@@ -33,17 +33,17 @@ let arrayUsers: Array<string|number>;
 
 arrayUsers = ['123', 123];
 
-let possibleResults: [number, number, string];
+let possibleResults: [1|-1, number, string];
 
 possibleResults = [1,-1];
 
-possibleResults = [4, 10];
+possibleResults = [1, 10];
 
-possibleResults = [4, 10, 3];
+possibleResults = [-1, 10, 3];
 
-possibleResults = [4, 'asdf'];
+possibleResults = [2, 'asdf'];
 
-possibleResults = [4, 10, 'asdefsadf'];
+possibleResults = [-1, 10, 'asdefsadf'];
 
 let userObj: {
   name: string;
@@ -71,3 +71,14 @@ data = {
 }
 
 data = ''; // not acecptable
+
+// restrict
+enum Role {
+  Admin,
+  Editor,
+  Guest,
+} 
+
+let userRole: 'admin' | 'editor' | 'guest' = 'admin' // Role = 5;
+
+userRole = 'guest';
