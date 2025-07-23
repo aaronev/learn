@@ -28,3 +28,7 @@ let users: (string|number)[];
 users = [1, '23'];
 
 // users = [[]] anything other than strings or numbers are not acceptable.
+
+let arrayUsers: Array<string|number>;
+
+arrayUsers = ['123', 123];
