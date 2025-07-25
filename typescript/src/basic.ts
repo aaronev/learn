@@ -157,6 +157,14 @@ function processAny(val:any) {
   val.log();
 };
 
-function generateError(msg: string) {
-  throw new Error(msg)
+function generateError(msg?: string) {
+  throw new Error(msg);
+}
+
+generateError('An error occured!');
+
+type Users = {
+  name: string,
+  age: number;
+  role?: 'admin' | 'guest';
 }
