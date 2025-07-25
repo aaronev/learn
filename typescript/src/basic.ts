@@ -134,3 +134,9 @@ if (!inputEl) {
 }
 
 console.log(inputEl?.value);
+
+const inputEle = document.getElementById('user-name') as HTMLInputElement | null;
+
+console.log(inputEle?.value);
+
+//unknown type
