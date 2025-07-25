@@ -156,3 +156,7 @@ function processAny(val:any) {
   // any could get a runtime error;
   val.log();
 };
+
+function generateError(msg: string) {
+  throw new Error(msg)
+}
