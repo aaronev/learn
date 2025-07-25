@@ -169,4 +169,12 @@ type Users = {
   role?: 'admin' | 'guest';
 }
 
-// nullish coalescing ?? not ts specific function
+// nullish coalescing ?? not ts specific function js also supports it
+
+let input = '';
+
+const didProvidedInput = input ?? false; // ?? checks if left side input is null or undefined;
+
+
+
+
