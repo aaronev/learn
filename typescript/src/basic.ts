@@ -168,3 +168,5 @@ type Users = {
   age: number;
   role?: 'admin' | 'guest';
 }
+
+// nullish coalescing ?? not ts specific function
