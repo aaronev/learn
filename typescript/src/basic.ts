@@ -140,3 +140,19 @@ const inputEle = document.getElementById('user-name') as HTMLInputElement | null
 console.log(inputEle?.value);
 
 //unknown type
+
+function process(val:unknown) { // unknown type
+  if (typeof val === 'object' 
+  && !!val 
+  && 'log' in val 
+  && typeof val.log === 'function') {
+
+  } {
+    val.log();
+  }
+};
+
+function processAny(val:any) { 
+  // any could get a runtime error;
+  val.log();
+};
