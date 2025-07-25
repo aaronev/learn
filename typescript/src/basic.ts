@@ -127,7 +127,7 @@ let user: User = {
   },
 }
 
-const inputEl = document.getElementById('user-name')
+const inputEl = document.getElementById('user-name')! //! is a type script feature that tells ts that the code in front of it will not yield null.
 
 if (!inputEl) {
   throw new Error('Element not found!');
