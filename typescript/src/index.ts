@@ -14,3 +14,7 @@ function dfP(inputPrice: number) {
 }
 
 dfP(12);
+
+function add(a:any, b:any) { // will not compile because of the ts config must set a: any and b: any or some time.
+  return a+b;
+}
