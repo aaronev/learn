@@ -30,5 +30,29 @@
 // https://leetcode.com/problems/longest-common-prefix/
 
 function longestCommonPrefix(strs: string[]): string {
+  if (strs.length < 2) { return strs[0]; } 
+  //sort the array based on length
+  strs.sort((a,b)=> a.length-b.length);
 
-}
+  // check the shortest
+  const short = strs[0];
+  let i = 0;
+  let continues = true;
+  let results = '';
+  while (i < short.length && continues) {
+      let j = 0;
+      while (j < strs.length) {
+          if (strs[j][i] !== short[i]) {
+              continues = false;
+          } 
+          j++
+      };
+
+      if (continues) {
+          results += short[i]
+      }
+      i++
+  };
+
+  return results;
+};
