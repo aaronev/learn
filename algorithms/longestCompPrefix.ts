@@ -26,3 +26,5 @@
 // 1 <= strs.length <= 200
 // 0 <= strs[i].length <= 200
 // strs[i] consists of only lowercase English letters if it is non-empty.
+
+// https://leetcode.com/problems/longest-common-prefix/
