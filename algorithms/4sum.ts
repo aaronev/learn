@@ -32,3 +32,7 @@ Constraints:
 */
 
 // https://leetcode.com/problems/4sum/description/
+
+function fourSum(nums: number[], target: number): number[][] {
+
+};
