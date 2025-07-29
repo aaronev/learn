@@ -51,3 +51,19 @@ class Employee extends User {
   };
 
 };
+
+abstract class UIElement {
+  constructor(public identifier: string) {};
+
+  clone(targetLocation: string) {
+    // logic to duplicate the UI elememt
+  }
+};
+
+// let uiElement = new UIElement(); 
+
+class SideDrawerElement extends UIElement {
+  constructor( public identifier: string, public position: 'left' | 'right'){
+    super(identifier);
+  }
+};
