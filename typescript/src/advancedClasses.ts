@@ -1,6 +1,6 @@
 class User {
-  private _firstName: string = '';
-  private _lastName: string = '';
+  protected _firstName: string = '';
+  protected _lastName: string = '';
 
   set firstName(name: string) {
     if (name.trim() === '') {
@@ -36,3 +36,18 @@ aaronv.firstName = 'Max';
 aaronv.lastName = '';
 
 console.log(aaronv.fullName);
+
+
+class Employee extends User {
+  constructor(public jobTitle: stirng) {
+    super();
+    // super.firstName = 'Max';
+  };
+
+  work() {
+    // ...
+    this._firstName;
+    
+  };
+
+};
