@@ -1,15 +1,31 @@
 "use strict";
 class User {
-    constructor(firstName, lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    constructor() {
+        this._firstName = '';
+        this._lastName = '';
     }
+    set firstName(name) {
+        if (name.trim() === '') {
+            throw new Error('Invalid name.');
+        }
+        this._firstName = name;
+    }
+    ;
+    set lastName(name) {
+        if (name.trim() === '') {
+            throw new Error('Invalid name.');
+        }
+        this._lastName = name;
+    }
+    ;
     get fullName() {
-        return this.firstName + ' ' + this.lastName;
+        return this._firstName + ' ' + this._lastName;
     }
     ;
 }
 ;
-const max = new User('aaron', 'vill');
-console.log(max.fullName);
+const aaronv = new User();
+aaronv.firstName = 'Max';
+aaronv.lastName = '';
+console.log(aaronv.fullName);
 //# sourceMappingURL=advancedClasses.js.map
