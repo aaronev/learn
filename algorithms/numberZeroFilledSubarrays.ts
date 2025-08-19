@@ -44,6 +44,27 @@ Constraints:
 // link https://leetcode.com/problems/number-of-zero-filled-subarrays/?envType=daily-question&envId=2025-08-19
 
 function zeroFilledSubarray(nums: number[]): number {
-  // count how many zeros
-  // 
+  let seq = 0;
+  let count = 0;
+
+  const findSeqCount = (n:number) => {
+      for (let i = 0; i < n; i++) {
+          count += (n-i);
+      };
+  };
+
+  for (let i = 0; i < nums.length; i++) {
+      if (nums[i] === 0) {
+          seq++;
+          if (i === nums.length-1) {
+              findSeqCount(seq);
+          }
+      } else {
+          findSeqCount(seq);
+          seq = 0;
+      };
+  };
+
+  return count;
+
 };
