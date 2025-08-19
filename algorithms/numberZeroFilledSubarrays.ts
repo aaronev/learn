@@ -41,6 +41,9 @@ Constraints:
 -109 <= nums[i] <= 109
 */
 
-// adds link https://leetcode.com/problems/number-of-zero-filled-subarrays/?envType=daily-question&envId=2025-08-19
+// link https://leetcode.com/problems/number-of-zero-filled-subarrays/?envType=daily-question&envId=2025-08-19
 
-//
+function zeroFilledSubarray(nums: number[]): number {
+  // count how many zeros
+  // 
+};
