@@ -33,7 +33,6 @@
 
 // https://leetcode.com/problems/remove-nth-node-from-end-of-list/
 
-
 /**
  * Definition for singly-linked list.
  * class ListNode {
@@ -59,10 +58,11 @@
       current = current.next;
   };
 
-  let myHead = new ListNode(list[0]);
+  let start = 0 !== list.length - n ? 0 : 1;
+  let myHead = new ListNode(list[start]);
   let curr = myHead;
 
-  for (let i = 1; i < list.length; i++) {
+  for (let i = start+1; i < list.length; i++) {
       if (i !== list.length - n) {
           curr = curr.next = new ListNode(list[i]);
       }
