@@ -32,3 +32,41 @@
 // 1 <= n <= sz
 
 // https://leetcode.com/problems/remove-nth-node-from-end-of-list/
+
+
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     val: number
+ *     next: ListNode | null
+ *     constructor(val?: number, next?: ListNode | null) {
+ *         this.val = (val===undefined ? 0 : val)
+ *         this.next = (next===undefined ? null : next)
+ *     }
+ * }
+ */
+
+ function removeNthFromEnd(head: ListNode | null, n: number): ListNode | null {
+  if (!head.next) {
+      return new ListNode().next;
+  };  
+
+  let current = head;
+  let list = [];
+
+  while (current) {
+      list.push(current.val);
+      current = current.next;
+  };
+
+  let myHead = new ListNode(list[0]);
+  let curr = myHead;
+
+  for (let i = 1; i < list.length; i++) {
+      if (i !== list.length - n) {
+          curr = curr.next = new ListNode(list[i]);
+      }
+  };
+
+  return myHead;
+};
